@@ -1,6 +1,5 @@
 package com.github.jbqneto.employeecontrol.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,15 +19,14 @@ import com.github.jbqneto.employeecontrol.model.Gerente;
  */
 @RestController
 public class FuncionarioController {
-
-	private static ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 	
 	public FuncionarioController() {
 		Funcionario func = new Funcionario();
 		func.setNome("Neto");
 		func.setCpf("12345678901");
-		func.setSalario(1000.00);
-		funcionarios.add(func);
+		func.setSalario(2000.00);
+		
+		FolhaController.registraFuncionario(func);
 		
 		Gerente gerente = new Gerente();
 		gerente.setNome("Judivam");
@@ -36,16 +34,17 @@ public class FuncionarioController {
 		gerente.setSenha(123456);
 		gerente.setSalario(5000.00);
 		
-		funcionarios.add(gerente);
+		FolhaController.registraFuncionario(gerente);
 	}
 	
 	@RequestMapping(value="/funcionarios", method = RequestMethod.GET)
 	public List<Funcionario> getFuncionarios() {
-		return funcionarios;
+		return FolhaController.getFuncionarios();
 	}
 	
 	@RequestMapping(value="/funcionario/{id}", method = RequestMethod.GET)
 	public Funcionario getFuncionario(@PathVariable int id) {
+		List<Funcionario> funcionarios = FolhaController.getFuncionarios();
 		if (funcionarios.size() > id) {
 			return funcionarios.get(id);
 		} else {
