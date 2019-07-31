@@ -1,6 +1,7 @@
 package com.github.jbqneto.employeecontrol.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +34,14 @@ public class FuncionarioController {
 		gerente.setNome("Judivam");
 		gerente.setCpf("10987654321");
 		gerente.setSenha(123456);
-		gerente.setSalario(5000.20);
+		gerente.setSalario(5000.00);
 		
 		funcionarios.add(gerente);
+	}
+	
+	@RequestMapping(value="/funcionarios", method = RequestMethod.GET)
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
 	}
 	
 	@RequestMapping(value="/funcionario/{id}", method = RequestMethod.GET)

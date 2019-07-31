@@ -4,7 +4,7 @@ public class Funcionario {
 	
 	private String cpf;
 	private String nome;
-	protected double salario;
+	private double salario;
 	
 	public String getCpf() {
 		return cpf;
